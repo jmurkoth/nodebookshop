@@ -2,6 +2,7 @@ const express =require('express');
 const path =require('path');
 const mainRoute = require('./routes/main');
 const shopRoute=require('./routes/shop');
+const adminRoute=require('./routes/admin');
 const rootDir =require('./utility/path');
 const ejs =require('ejs');
 const app =express();
@@ -13,6 +14,7 @@ app.use(express.static(path.join(rootDir,'public')));
 app.set('viewengine',ejs);
 //set the routes
 app.use(shopRoute);
+app.use('/admin',adminRoute);
 app.use(mainRoute);
 
 
