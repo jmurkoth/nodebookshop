@@ -2,22 +2,22 @@
 <%-include('../layout/nav.ejs') %>
     <h1>Add product</h1>
     <div class="container">
-    <form>
+    <form method="POST" action="/admin/add-product">
         <div class="form-group">
           <label for="namectrl">Name</label>
-          <input type="text" class="form-control" id="namectrl" placeholder="product name">
+          <input type="text" class="form-control" id="namectrl" name="name" placeholder="product name">
         </div>
         <div class="form-group">
             <label for="descriptionctrl">Description</label>
-            <input type="text" class="form-control" id="descriptionctrl" placeholder="product description">
+            <input type="text" class="form-control" id="descriptionctrl" name="description" placeholder="product description">
         </div>
         <div class="form-group">
             <label for="pricectrl">Price</label>
-            <input type="number" class="form-control" id="pricectrl" >
+            <input type="number" class="form-control" name="price" id="pricectrl" >
         </div>
         <div class="form-group">
             <label for="imagectrl">Image url</label>
-            <input type="url" class="form-control" id="imagectrl" >
+            <input type="url" class="form-control" name="imageurl" id="imagectrl" >
         </div>
         <div class="form-group">
                      <button type="submit" class="btn btn-primary">Add Product</button>
