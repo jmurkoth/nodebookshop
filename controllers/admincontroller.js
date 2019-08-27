@@ -19,3 +19,9 @@ module.exports.addProduct=(req, res)=>{
     res.redirect('/');
 
 }
+module.exports.getProducts=(req,res)=>{
+    Product.getAll((products)=>{
+        res.render('admin/products.ejs',{path:'/admin/products', products:products});
+    })
+    
+}

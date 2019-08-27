@@ -19,4 +19,10 @@ module.exports =  class Product {
             })
            })
        }
+      
+      static getAll(cb){
+           fileSave.readFile((data)=>{
+              cb(data);
+           });
+       }
 }
