@@ -1,0 +1,32 @@
+<%-include('../layout/begin.ejs') %>
+<%-include('../layout/nav.ejs') %>
+    <h1>Edit  product</h1>
+    <div class="container">
+        <% if(product) { %>
+        <form method="POST" action="/admin/edit-product">
+            <input type="hidden" id="productId" name="productId" value="<%=product.id%>"/>
+            <div class="form-group">
+              <label for="namectrl">Name</label>
+              <input type="text" class="form-control" id="namectrl" name="name" placeholder="product name"  value="<%=product.name%>"/>
+            </div>
+            <div class="form-group">
+                <label for="descriptionctrl">Description</label>
+                <input type="text" class="form-control" id="descriptionctrl" name="description" placeholder="product description" value="<%=product.description%>" />
+            </div>
+            <div class="form-group">
+                <label for="pricectrl">Price</label>
+                <input type="number" class="form-control" name="price" id="pricectrl" step="0.1" value="<%=product.price%>"/>
+            </div>
+            <div class="form-group">
+                <label for="imagectrl">Image url</label>
+                <input type="url" class="form-control" name="imageUrl" id="imagectrl" value="<%=product.image%>" />
+            </div>
+            <div class="form-group">
+                         <button type="submit" class="btn btn-primary">Save Product</button>
+            </div>
+        </form>
+        <%} else { %>
+        <h1>No product found</h1>
+        <%}%>
+    </div>
+<%-include('../layout/end.ejs') %>

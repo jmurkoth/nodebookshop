@@ -7,7 +7,7 @@ const filePath=path.join(rootDir,'products.json');
 module.exports.readFile=(cb)=>{
     fs.readFile(filePath,(err, data)=>{
         var arr=[];
-        if(!err)
+        if(!err  &&  data!=null && data.length>0 )
         {
             arr=JSON.parse(data);
             console.log(arr);
