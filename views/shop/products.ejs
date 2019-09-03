@@ -1,4 +1,22 @@
 <%-include('../layout/begin.ejs') %>
 <%-include('../layout/nav.ejs') %>
     <h1>Products</h1>
+    <div class="card-deck">
+            <% if(products.length>0) {%>
+            <% for( let prod of products) { %>
+                <div class="card text-center" style="width: 18rem;">
+                        <div class="card-header ">
+                                <h4><%=prod.name%></h4>
+                        </div>
+                        <img class="card-img-top" src="/img/book.jpg" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">$<%=prod.price%></h5>
+                          <p class="card-text"><%=prod.description %></p>
+                          <a href="#<%=prod.id%>"" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                </div>
+          <%}}  else {%>
+            <h2> No producs found</h2>
+          <%}%>
+        </div>
 <%-include('../layout/end.ejs') %>
