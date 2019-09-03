@@ -19,6 +19,8 @@ module.exports =  class Product {
             // add the new product
             if (this.id=='')
             {
+              //generate the new id 
+              this.id=Math.random().toString(36).substr(2,9);
               data.push(this);
             }
             else{
@@ -47,6 +49,13 @@ module.exports =  class Product {
        
        static deleteProductById(id,calb){
            console.log('deleting the product ');
+           fileSave.readFile((data)=>{
+                let dataToSave =data.filter(c=> c.id!=id);
+                fileSave.writeFile(dataToSave,()=>{
+                    calb();
+                });
+           });
+           
        }
        static getProductById(id ,calb) {
            console.log(`received param: ${id}`);

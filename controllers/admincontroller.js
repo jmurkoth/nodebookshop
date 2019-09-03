@@ -11,8 +11,10 @@ module.exports.getAddProduct=(req,res,next)=>{
 module.exports.deleteProduct=(req,res,next)=>{
     let id =req.body.productId;
     console.log(`product to delete : ${id}`);
-    
-    next();
+    Product.deleteProductById(id,()=>{
+        console.log('Product deleted');
+        res.redirect('/');
+    });
 }
 module.exports.getEditProduct=(req,res,next)=>{
      

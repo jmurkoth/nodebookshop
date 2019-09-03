@@ -13,7 +13,7 @@
                       <h5 class="card-title">$<%=prod.price%></h5>
                       <p class="card-text"><%=prod.description %></p>
                       <a href="/admin/edit-product/<%=prod.id%>"" class="btn btn-primary">Edit</a>
-                      <form method="POST" action="/admin/delete-product" class="inline">
+                      <form method="POST" action="/admin/delete-product" style="display:inline" >
                         <button class="btn btn-danger" type="submit">Delete</button>
                         <input type="hidden" value="<%=prod.id%>" name="productId" />
                       </form>
