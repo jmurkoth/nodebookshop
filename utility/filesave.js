@@ -1,10 +1,9 @@
 const fs = require('fs');
-const path =require('path');
-const rootDir= require('./path');
 
-const filePath=path.join(rootDir,'products.json');
 
-module.exports.readFile=(cb)=>{
+//const filePath=path.join(rootDir,'products.json');
+
+module.exports.readFile=(filePath,cb)=>{
     fs.readFile(filePath,(err, data)=>{
         var arr=[];
         if(!err  &&  data!=null && data.length>0 )
@@ -18,7 +17,7 @@ module.exports.readFile=(cb)=>{
     });
 }
 
-module.exports.writeFile=(data,cb)=>{
+module.exports.writeFile=(filePath,data,cb)=>{
     var stringVal= JSON.stringify(data);
     fs.writeFile(filePath,stringVal,(err)=>{
         if(!err)

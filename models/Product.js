@@ -1,4 +1,7 @@
 const fileSave = require('../utility/filesave');
+const path =require('path');
+const rootDir= require('../utility/path');
+const filePath=path.join(rootDir,'products.json');
 module.exports =  class Product {
     
        constructor(id, name, description, image, price)
@@ -13,7 +16,7 @@ module.exports =  class Product {
        save(){
           
 
-           fileSave.readFile((data)=>{
+           fileSave.readFile(filePath,(data)=>{
             
             if(data===null){data=[]};
             // add the new product
@@ -35,14 +38,14 @@ module.exports =  class Product {
                   }
                 });
             }
-            fileSave.writeFile(data,()=>{
+            fileSave.writeFile(filePath,data,()=>{
                 console.log('saved now');
             })
            })
        }
       
       static getAll(cb){
-           fileSave.readFile((data)=>{
+           fileSave.readFile(filePath,(data)=>{
               cb(data);
            });
        }
@@ -51,7 +54,7 @@ module.exports =  class Product {
            console.log('deleting the product ');
            fileSave.readFile((data)=>{
                 let dataToSave =data.filter(c=> c.id!=id);
-                fileSave.writeFile(dataToSave,()=>{
+                fileSave.writeFile(filePath,dataToSave,()=>{
                     calb();
                 });
            });
@@ -59,7 +62,7 @@ module.exports =  class Product {
        }
        static getProductById(id ,calb) {
            console.log(`received param: ${id}`);
-           fileSave.readFile((data)=>{
+           fileSave.readFile(filePath,(data)=>{
              var matchProduct = data.find(c=> c.id==id);
              console.log(`id: ${id} matching product :${JSON.stringify(matchProduct)}`)
              calb(matchProduct);
