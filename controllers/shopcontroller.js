@@ -15,6 +15,14 @@ module.exports.getOrders=(req,res)=>{
     res.render('shop/orders.ejs',{path:'/orders'});
 }
 
+module.exports.getProductDetails=(req,res)=>{
+    let productID=req.params.productId;
+    Product.getProductById(productID,(prod)=>{
+        res.render('shop/product-detail.ejs',{path:'/product-detail', product:prod});
+    });
+    
+}
+
 module.exports.getHome=(req,res)=>{
     Product.getAll((prods)=>{
         res.render('shop/home.ejs',{path:'/home',products:prods});
