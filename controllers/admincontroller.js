@@ -13,7 +13,7 @@ module.exports.deleteProduct=(req,res,next)=>{
     console.log(`product to delete : ${id}`);
     Product.deleteProductById(id,()=>{
         console.log('Product deleted');
-        res.redirect('/');
+        res.redirect('/admin/products');
     });
 }
 module.exports.getEditProduct=(req,res,next)=>{

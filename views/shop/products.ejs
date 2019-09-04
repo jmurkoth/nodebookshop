@@ -3,6 +3,7 @@
     <h1>Products</h1>
     <div class="card-deck">
             <% if(products.length>0) {%>
+                <div class="grid">
             <% for( let prod of products) { %>
                 <div class="card text-center" style="width: 18rem;">
                         <div class="card-header ">
@@ -12,10 +13,13 @@
                         <div class="card-body">
                           <h5 class="card-title">$<%=prod.price%></h5>
                           <p class="card-text"><%=prod.description %></p>
-                          <a href="#<%=prod.id%>"" class="btn btn-primary">Add to Cart</a>
+                          <a href="#<%=prod.id%>"" class="btn btn-warning">Details</a>
+                          <a href="#<%=prod.id%>"" class="btn btn-success">Add to Cart</a>
                         </div>
                 </div>
-          <%}}  else {%>
+                <%}%>
+        </div>
+        <% }  else {%>
             <h2> No producs found</h2>
           <%}%>
         </div>

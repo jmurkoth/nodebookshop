@@ -3,6 +3,7 @@
     <h1>Manage products</h1>
     <div class="card-deck">
         <% if(products.length>0) {%>
+        <div class="grid">
         <% for( let prod of products) { %>
             <div class="card text-center" style="width: 18rem;">
                     <div class="card-header ">
@@ -19,7 +20,9 @@
                       </form>
                         </div>
             </div>
-      <%}}  else {%>
+      <%}%>
+    </div>
+    <% }  else {%>
         <h2> No producs found</h2>
       <%}%>
     </div>

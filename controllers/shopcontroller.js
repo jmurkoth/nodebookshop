@@ -15,3 +15,9 @@ module.exports.getOrders=(req,res)=>{
     res.render('shop/orders.ejs',{path:'/orders'});
 }
 
+module.exports.getHome=(req,res)=>{
+    Product.getAll((prods)=>{
+        res.render('shop/home.ejs',{path:'/home',products:prods});
+    })
+}
+
