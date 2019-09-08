@@ -29,7 +29,7 @@ module.exports.postEditProduct=(req,res,next)=>{
      
     let name =req.body.name;
     let description =req.body.description;
-    let price =req.body.price;
+    let price =parseFloat(req.body.price);
     let imageURl =req.body.imageUrl;
     let id =req.body.productId;
     var prod = new Product (id, name,description,imageURl,price);
@@ -41,7 +41,7 @@ module.exports.postEditProduct=(req,res,next)=>{
 module.exports.addProduct=(req, res)=>{
     let name =req.body.name;
     let description =req.body.description;
-    let price =req.body.price;
+    let price =parseFloat(req.body.price);
     let imageURl =req.body.imageUrl;
     var prod = new Product ('', name,description,imageURl,price);
     prod.save();

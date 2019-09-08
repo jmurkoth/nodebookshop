@@ -9,7 +9,11 @@
         <div class="card-body">
           <h5 class="card-title">$<%=product.price%></h5>
           <p class="card-text"><%=product.description %></p>
-           <a href="#<%=product.id%>"" class="btn btn-success">Add to Cart</a>
+          <form action="/cart" method="POST">
+            <button class="btn btn-success" type="submit">Add to Cart</button>
+            <input type="hidden" name="productId" value="<%= product.id %>" />
+            <input type="hidden" name="quantity" value="10" />
+        </form>
         </div>
 </div>
 <%-include('../layout/end.ejs') %>

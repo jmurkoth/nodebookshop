@@ -18,7 +18,7 @@ module.exports.readFile=(filePath,cb)=>{
 }
 
 module.exports.writeFile=(filePath,data,cb)=>{
-    var stringVal= JSON.stringify(data);
+    var stringVal= JSON.stringify(data,'product');
     fs.writeFile(filePath,stringVal,(err)=>{
         if(!err)
         {

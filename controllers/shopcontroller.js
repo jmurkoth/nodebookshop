@@ -1,5 +1,7 @@
 const express= require('express');
 const Product  = require('../models/Product');
+const Cart = require('../models/cart');
+const CartProduct = require('../models/CartProduct');
 module.exports.getCart=(req,res)=>{
     res.render('shop/cart.ejs',{path:'/cart'});
 }
@@ -29,3 +31,14 @@ module.exports.getHome=(req,res)=>{
     })
 }
 
+module.exports.postToCart= (req, res)=>{
+    let productId= req.body.productId;
+    let quantity = req.body.quantity? parseInt(req.body.quantity):1 ;
+    Product.getProductById(productId,(prod)=>{
+        let cp =new CartProduct(prod,quantity);
+        Cart.addProduct(cp);
+        res.redirect('/cart');
+        });
+   
+    
+}

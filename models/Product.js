@@ -52,7 +52,7 @@ module.exports =  class Product {
        
        static deleteProductById(id,calb){
            console.log('deleting the product ');
-           fileSave.readFile((data)=>{
+           fileSave.readFile(filePath,(data)=>{
                 let dataToSave =data.filter(c=> c.id!=id);
                 fileSave.writeFile(filePath,dataToSave,()=>{
                     calb();
