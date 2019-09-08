@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
+  "nodemonConfig": {
+    "ignore": ["data/"],
+    "delay": "2500"
+  },
   "author": "Jeevan",
   "license": "ISC",
   "dependencies": {

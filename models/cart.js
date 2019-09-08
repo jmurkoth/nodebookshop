@@ -1,7 +1,9 @@
 const fileSave = require('../utility/filesave');
 const path =require('path');
 const rootDir= require('../utility/path');
-const filePath=path.join(rootDir,'cart.json');
+const filePath=path.join(rootDir,'data','cart.json');
+
+
 module.exports = class Cart{
     constructor( cartProducts)
     {
@@ -9,7 +11,7 @@ module.exports = class Cart{
         this.TotalPrice = Cart.calculateCartTotal(cartProducts);
     }
      
-    static addProduct(cartProduct){
+    static addProduct(cartProduct,cb){
         console.log(`Adding product ${cartProduct.product.id} quantity ${cartProduct.quantity} to cart`);
         fileSave.readFile(filePath,(data)=> {
             if(data.length===0){data=new Cart([])};
@@ -26,15 +28,27 @@ module.exports = class Cart{
             //Calculate the price
             data.TotalPrice=Cart.calculateCartTotal(data.CartProducts);
             fileSave.writeFile(filePath,data,()=>{
-                console.log('saved');
-            })
+               cb();
+            });
         });
     }
  
-    removeProduct(cartProduct){
-
+    static removeProduct(productId,cb){
+        console.log(`Removing product ${productId} from cart`);
+        fileSave.readFile(filePath,(data)=> {
+            if(data)
+            {
+                let dataToSave =data.CartProducts.filter(c=> c.product.id!=productId);
+                data.CartProducts=dataToSave;
+                data.TotalPrice=Cart.calculateCartTotal(dataToSave);
+                fileSave.writeFile(filePath,data,()=>{
+                    cb();
+                 });
+            }
+          
+        });
     }
-    
+
     static calculateCartTotal(cartProducts){
         
         let total=0;
@@ -42,5 +56,12 @@ module.exports = class Cart{
             total= total+(cp.product.price*cp.quantity);
         });
        return total;
+    }
+
+    static getAllCartItems( cb){
+        fileSave.readFile(filePath,(data)=> {
+            cb(data);
+        });
+
     }
 }

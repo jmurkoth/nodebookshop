@@ -1,4 +1,65 @@
 <%-include('../layout/begin.ejs') %>
 <%-include('../layout/nav.ejs') %>
     <h1>Cart</h1>
+    <% if(cart.CartProducts && cart.CartProducts.length>0) {%>
+
+    <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="border-0 bg-light">
+                <div class="text-uppercase">Product</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="text-uppercase">Price</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="text-uppercase">Quantity</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="text-uppercase">Remove</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+        <% for(let cp of cart.CartProducts) { %>
+              <tr>
+                  <td>
+                      <div class="row">
+                        <div class="col-sm-2">
+                                <img class="img-thumbnail rounded float-left" src="/img/book.jpg" alt="Card image cap">
+                        </div>
+                        <div class="col-sm-10"> 
+                           <h2 class="card-title"><%=cp.product.name %></h2> 
+                           <div class="card-subtitle mb-2 text-muted"><%=cp.product.description %></div> 
+                        </div>
+                      </div>
+                    
+                   </td>
+                  <td>$<%=cp.product.price%></td>
+                  <td><%=cp.quantity%></td>
+                  <td>
+                     
+
+                      <form action="/delete-cart-item" method="POST" style="display:inline" >
+                        <button class="btn btn-danger">Remove</button>
+                        <input type="hidden" name="productId" value="<%= cp.product.id %>" />
+                     
+                    </form>
+                  </td>
+              </tr>
+            <%} %>
+            <tfoot>
+              <tr>
+                <th scope="row" colspan="1" class="border-0 bg-light text-right">Total Price</th>
+                <th scope="row" colspan="2" class="border-0 bg-light text-center">$ <%=cart.TotalPrice %></th>
+                <td scope="row" class="border-0 bg-light"></td>
+              </tr>
+            </tfoot>
+          </tbody>
+            </table>
+            </div>
+            <% } else {%>
+              <h2>Your cart is empty</h2>
+            <%} %>
 <%-include('../layout/end.ejs') %>
