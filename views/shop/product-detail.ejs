@@ -1,6 +1,7 @@
 <%-include('../layout/begin.ejs') %>
 <%-include('../layout/nav.ejs') %>
     <h1>Product Detail</h1>
+<div class ="container">
     <div class="card text-center">
         <div class="card-header ">
                 <h2><%=product.name%></h2>
@@ -15,5 +16,6 @@
             <input type="hidden" name="quantity" value="1" />
         </form>
         </div>
-</div>
+      </div>
+    </div>
 <%-include('../layout/end.ejs') %>
