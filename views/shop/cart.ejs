@@ -1,7 +1,7 @@
 <%-include('../layout/begin.ejs') %>
 <%-include('../layout/nav.ejs') %>
     <h1>Cart</h1>
-    <% if(cart.CartProducts && cart.CartProducts.length>0) {%>
+    <% if(cartProds && cartProds.length>0) {%>
 
     <div class="table-responsive">
         <table class="table">
@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-        <% for(let cp of cart.CartProducts) { %>
+        <% for(let cp of cartProds) { %>
               <tr>
                   <td>
                       <div class="row">
@@ -30,20 +30,20 @@
                                 <img class="img-thumbnail rounded float-left" src="/img/book.jpg" alt="Card image cap">
                         </div>
                         <div class="col-sm-10"> 
-                           <h2 class="card-title"><%=cp.product.name %></h2> 
-                           <div class="card-subtitle mb-2 text-muted"><%=cp.product.description %></div> 
+                           <h2 class="card-title"><%=cp.name %></h2> 
+                           <div class="card-subtitle mb-2 text-muted"><%=cp.description %></div> 
                         </div>
                       </div>
                     
                    </td>
-                  <td>$<%=cp.product.price%></td>
-                  <td><%=cp.quantity%></td>
+                  <td>$<%=cp.price%></td>
+                  <td><%=cp.cart_product.quantity%></td>
                   <td>
                      
 
                       <form action="/delete-cart-item" method="POST" style="display:inline" >
                         <button class="btn btn-danger">Remove</button>
-                        <input type="hidden" name="productId" value="<%= cp.product.id %>" />
+                        <input type="hidden" name="productId" value="<%= cp.id %>" />
                      
                     </form>
                   </td>
@@ -52,7 +52,7 @@
             <tfoot>
               <tr>
                 <th scope="row" colspan="1" class="border-0 bg-light text-right">Total Price</th>
-                <th scope="row" colspan="2" class="border-0 bg-light text-center">$ <%=cart.TotalPrice %></th>
+                <th scope="row" colspan="2" class="border-0 bg-light text-center">$ <%=cartTotal %></th>
                 <td scope="row" class="border-0 bg-light"></td>
               </tr>
             </tfoot>
